@@ -1,4 +1,4 @@
-CREATE FUNCTION bit32real(bit) RETURNS real
+CREATE OR REPLACE FUNCTION bit32real(bit) RETURNS real
     LANGUAGE plpgsql
     AS $_$
 declare
@@ -17,7 +17,7 @@ begin
 end
 $_$;
 
-CREATE FUNCTION real32bit(inp real) RETURNS bit
+CREATE OR REPLACE FUNCTION real32bit(inp real) RETURNS bit
     LANGUAGE plpgsql
     AS $$
 declare
@@ -101,7 +101,7 @@ return Result;
 end
 $$;
 
-CREATE FUNCTION bit64double(bit) RETURNS double precision
+CREATE OR REPLACE FUNCTION bit64real(bit) RETURNS double precision
     LANGUAGE plpgsql
     AS $_$
 declare
@@ -119,7 +119,7 @@ begin
 end
 $_$;
 
-CREATE FUNCTION real64bit(inp double precision) RETURNS bit
+CREATE OR REPLACE FUNCTION real64bit(inp double precision) RETURNS bit
     LANGUAGE plpgsql
     AS $$
 declare

@@ -1,7 +1,8 @@
 --tests to_hex
 select to_hex(123456789::int),to_hex(123456789::int::bit(32));
 select to_hex(X'12ABCDEF'::int),to_hex(X'12ABCDEF');
-select to_hex(B'001100'::int),to_hex(B'001100'::bit(32));
+select to_hex(X'2ABCDEF'::int),to_hex(X'2ABCDEF');
+select to_hex(B'001100'::int),to_hex(B'001100');
 
 --tests float8 (64 bit real)
 select test,to_hex(x_test::bit(64)),

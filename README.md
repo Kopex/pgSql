@@ -1,3 +1,3 @@
 pgSql
 =====
-Collection of functions for PostgreSQL
+Collection of functions for PostgreSQL v8.4

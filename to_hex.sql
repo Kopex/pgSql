@@ -54,3 +54,18 @@ end loop;
 end
 $_$;
 COMMENT ON FUNCTION bit_cast(text) IS 'translator BIN-text to bits';
+
+CREATE OR REPLACE FUNCTION get_bit(bin bit,r int,len int default 0) RETURNS integer 
+  LANGUAGE plpgsql IMMUTABLE STRICT
+  AS $$
+declare
+  ln int;
+begin
+  if len <= 0 then ln = length(bin);
+  else ln = len;
+  end if;
+  return substring(bin,ln-r,1)::int;
+end
+$$;
+COMMENT ON FUNCTION get_bit(bit, integer, integer) IS 'get digit (r 0...len-1]) value from any bits';
+

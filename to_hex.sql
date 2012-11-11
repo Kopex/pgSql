@@ -1,3 +1,8 @@
+/**
+* @copyright  (c) Kopex 2012
+* @link       git://github.com/Kopex/pgSql.git
+*/
+
 CREATE OR REPLACE FUNCTION to_hex(bin bit) RETURNS text
     LANGUAGE plpgsql IMMUTABLE STRICT
     AS $$

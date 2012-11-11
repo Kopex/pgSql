@@ -1,3 +1,7 @@
+/**
+* @copyright  (c) Kopex 2012
+* @link       git://github.com/Kopex/pgSql.git
+*/
 CREATE OR REPLACE FUNCTION bit32real(bit) RETURNS real
     LANGUAGE plpgsql
     AS $_$

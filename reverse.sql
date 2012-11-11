@@ -1,4 +1,8 @@
-
+/**
+* @copyright  (c) Kopex 2012
+* @link       git://github.com/Kopex/pgSql.git
+* references  http://graphics.stanford.edu/~seander/bithacks.html
+*/
 CREATE OR REPLACE FUNCTION rev16(bin bit)
   RETURNS bit AS
 $BODY$
@@ -41,6 +45,32 @@ $BODY$
   LANGUAGE 'plpgsql' IMMUTABLE STRICT
   COST 100;
 
+CREATE OR REPLACE FUNCTION rev(bin bit)
+  RETURNS bit AS
+$BODY$
+declare
+  v varbit;mask varbit;
+  s bit(32);i int;
+  len int;
+begin
+  len=length(bin);
+  mask = ~ 0::bit(512);
+  mask = substring(mask,1,len);
+  s=len::bit(32);
+  v=bin;
+  loop
+    s=s>>1;i=s::int;
+    EXIT WHEN i = 0;
+    mask = mask # (mask << i);
+    --Raise info '% % %',i,to_hex(mask),to_hex(~mask);
+    v = ((v >> i) & mask) | ((v << i) & ~mask);
+  end loop;
+  return v;
+end
+$BODY$
+  LANGUAGE plpgsql IMMUTABLE STRICT
+  COST 100;
+
 CREATE OR REPLACE FUNCTION reverse(bin bit)
   RETURNS bit AS
 $BODY$
@@ -64,7 +94,7 @@ $BODY$
 CREATE OR REPLACE FUNCTION _re16(bit)
   RETURNS bit AS
 $BODY$
---реверс побитный для hex-слов
+
 begin
 
 return

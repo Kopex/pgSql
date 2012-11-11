@@ -1,3 +1,7 @@
+/**
+* @copyright  (c) Kopex 2012
+* @link       git://github.com/Kopex/pgSql.git
+*/
 --tests to_hex
 select to_hex(123456789::int),to_hex(123456789::int::bit(32));
 select to_hex(X'12ABCDEF'::int),to_hex(X'12ABCDEF');
@@ -23,3 +27,13 @@ select -2.350004769126645e-8::float8 as test,X'BE593BA4D81A30B8'
 union
 select -6.192790934171437e-011::float8 as test,X'BDD105CA09A96020'
 ) as s;
+
+--tests rev
+select "position"(rev(bin) # reverse(bin),B'1') 
+from (
+select X'12' as bin union --8
+select X'1234' union --32
+select X'12345678' union --64
+select X'1234567890ABCDEF' union --128
+select X'1234567890ABCDEF'||X'1234567890ABCDEF' --512
+) as sub

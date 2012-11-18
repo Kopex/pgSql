@@ -29,7 +29,7 @@ select -6.192790934171437e-011::float8 as test,X'BDD105CA09A96020'
 ) as s;
 
 --tests rev
-select "position"(rev(bin) # reverse(bin),B'1') 
+select "position"(rev(bin) # reverse(bin),B'1')=0 
 from (
 select X'12' as bin union --8
 select X'1234' union --32
@@ -37,3 +37,6 @@ select X'12345678' union --64
 select X'1234567890ABCDEF' union --128
 select X'1234567890ABCDEF'||X'1234567890ABCDEF' --512
 ) as sub
+
+--conv bin2bytea
+select encode(bin2bytea(X'12345678'),'hex')='34127856'

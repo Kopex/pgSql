@@ -113,7 +113,7 @@ begin
   l2 = length(bin2);
   i = pos - 1;
 
-  mk = bit_cast(repeat('1',l1));
+  mk = B''||repeat('1',l1);
   vl = (bin2||substring(mk,1,l1-l2)) >> i;
   mk = (mk >> i) & (mk << (l1-l2-i));
    

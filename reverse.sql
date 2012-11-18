@@ -54,8 +54,7 @@ declare
   len int;
 begin
   len=length(bin);
-  mask = ~ 0::bit(512);
-  mask = substring(mask,1,len);
+  mask = B''||repeat('1',len);
   s=len::bit(32);
   v=bin;
   loop
@@ -79,13 +78,17 @@ declare
   i int;
 begin
 
-  s=B'';
   i=length(bin);
-  While i>0 loop
-    s=s||substring(bin,i,1);
-    i=i-1;
-  end loop;
-  return s;
+  if i % 8 = 0 then
+    return rev(bin);
+  else
+    s=B'';
+    While i>0 loop
+      s=s||substring(bin,i,1);
+      i=i-1;
+    end loop;
+    return s;
+  end if;
 end
 $BODY$
   LANGUAGE plpgsql IMMUTABLE STRICT

@@ -102,8 +102,7 @@ begin
 end
 $$
 LANGUAGE plpgsql IMMUTABLE STRICT;
-COMMENT ON FUNCTION swapbits(bit,int,int,int) is 'Обмен порции битов из разряда 1 и 2 длинной len';
-
+COMMENT ON FUNCTION swapbits(bit,int,int,int) is 'Exchange of portion of bits from a digit 1 and 2 long len';
 CREATE OR REPLACE FUNCTION setbits(bin1 bit,bin2 bit,pos int) RETURNS bit 
 AS $$
 declare
@@ -122,4 +121,4 @@ begin
 end
 $$
 LANGUAGE plpgsql IMMUTABLE STRICT;
-COMMENT ON FUNCTION setbits(bit,int,int,int) is 'Копирование bin2 в bin1 с позиции Pos';
+COMMENT ON FUNCTION setbits(bit,int,int,int) is 'Copying in bin1 from  bin2 the position Pos';
